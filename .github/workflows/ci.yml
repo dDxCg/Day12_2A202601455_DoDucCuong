@@ -18,8 +18,8 @@ jobs:
         run: |
           pip install --no-cache-dir -r requirements.txt
           pip install --no-cache-dir pytest httpx pyyaml fakeredis
-      - name: Run tests (skip live-deploy checks)
-        run: pytest --ignore=tests/test_cp5.py -v
+      - name: Run tests (skip live-deploy checks and self-referential badge check)
+        run: pytest --ignore=tests/test_cp5.py -k "not test_badge_bao_passing" -v
 
   build:
     runs-on: ubuntu-latest
